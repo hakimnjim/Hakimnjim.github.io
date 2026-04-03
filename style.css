@@ -250,6 +250,29 @@ h1, h2, h3 {
 .project-content {
     padding: 2rem;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-info {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.learned {
+    font-style: italic;
+    border-left: 2px solid var(--accent-cyan);
+    padding-left: 1rem;
+}
+
+.project-tags {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .project-category {

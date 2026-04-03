@@ -59,20 +59,42 @@ document.addEventListener('DOMContentLoaded', () => {
     function createProjectCard(project) {
         const card = document.createElement('div');
         card.className = 'project-card reveal';
+        
+        // Use the first image from the array as the thumbnail
+        const thumbnail = project.images && project.images.length > 0 ? project.images[0] : 'placeholder.jpg';
+        
+        // Generate link icons based on availability
+        let linksHTML = '';
+        if (project.links) {
+            if (project.links.steam && project.links.steam !== '#') {
+                linksHTML += `<a href="${project.links.steam}" class="project-link" aria-label="Steam" target="_blank"><i class="fab fa-steam"></i></a>`;
+            }
+            if (project.links.playstore && project.links.playstore !== '#') {
+                linksHTML += `<a href="${project.links.playstore}" class="project-link" aria-label="Play Store" target="_blank"><i class="fab fa-google-play"></i></a>`;
+            }
+            if (project.links.download && project.links.download !== '#') {
+                linksHTML += `<a href="${project.links.download}" class="project-link" aria-label="Download" target="_blank"><i class="fas fa-download"></i></a>`;
+            }
+        }
+
         card.innerHTML = `
             <div class="project-image">
-                <img src="${project.image}" alt="${project.title}" loading="lazy">
+                <img src="${thumbnail}" alt="${project.title}" loading="lazy">
             </div>
             <div class="project-content">
-                <div class="project-category">${project.category}</div>
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-desc">${project.description}</p>
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                
+                <div class="project-info">
+                    <p class="learned"><strong>What I learned:</strong> ${project.learned}</p>
                 </div>
+
+                <div class="project-tags">
+                    ${project.skills.map(skill => `<span class="tag">${skill}</span>`).join('')}
+                </div>
+                
                 <div class="project-links">
-                    <a href="${project.links.demo}" class="project-link" aria-label="View Demo"><i class="fas fa-external-link-alt"></i></a>
-                    <a href="${project.links.source}" class="project-link" aria-label="View Source"><i class="fab fa-github"></i></a>
+                    ${linksHTML}
                 </div>
             </div>
         `;
