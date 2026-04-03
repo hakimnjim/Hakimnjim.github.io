@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="project-desc">${project.description}</p>
                 
                 <div class="project-info">
-                    <p class="learned"><strong>Key Learning:</strong> ${project.learned}</p>
+                    <p class="learned"><strong>Developer Insights</strong> ${project.learned}</p>
                 </div>
 
                 <div class="project-tags">

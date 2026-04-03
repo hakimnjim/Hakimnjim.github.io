@@ -255,16 +255,45 @@ h1, h2, h3 {
 }
 
 .project-info {
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    background: rgba(34, 211, 238, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(34, 211, 238, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-info::before {
+    content: 'SKILLS GROWTH';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--accent-cyan);
+    color: var(--bg-color);
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-bottom-left-radius: 8px;
+    letter-spacing: 1px;
 }
 
 .learned {
-    font-style: italic;
-    border-left: 2px solid var(--accent-cyan);
-    padding-left: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.learned strong {
+    color: var(--accent-cyan);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .project-tags {
