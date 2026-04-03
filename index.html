@@ -67,13 +67,21 @@
             </div>
         </section>
 
-        <!-- All Projects Section -->
         <section id="projects" class="all-projects-section section-padding">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">All <span>Projects</span></h2>
                     <p class="section-subtitle">Exploring different genres, mechanics, and experimental game design.</p>
                 </div>
+                
+                <!-- Filter Buttons -->
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="personal">Personal</button>
+                    <button class="filter-btn" data-filter="client">Client</button>
+                    <button class="filter-btn" data-filter="published">Published</button>
+                </div>
+
                 <div id="all-projects-container" class="projects-grid">
                     <!-- All projects will be rendered here by JS -->
                 </div>
