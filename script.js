@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scroll Animations (Intersection Observer)
     function setupScrollAnimations() {
         const observerOptions = {
-            threshold: 0.1,
+            threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
         };
 
@@ -184,13 +184,31 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
+                    // Add a slight stagger effect for multiple elements entering at once
+                    if (entry.target.classList.contains('projects-grid')) {
+                        const cards = entry.target.querySelectorAll('.project-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => card.classList.add('active'), index * 100);
+                        });
+                    }
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('section, .project-card, .skill-item, .contact-card, .stat-item').forEach(el => {
-            el.classList.add('reveal');
+        // Targeted reveal types
+        document.querySelectorAll('section').forEach(el => {
+            el.classList.add('reveal', 'reveal-up');
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.skill-item, .contact-card, .stat-item').forEach((el, index) => {
+            el.classList.add('reveal', 'reveal-up');
+            el.style.transitionDelay = `${(index % 3) * 0.1}s`;
+            observer.observe(el);
+        });
+        
+        // Special reveal for grids
+        document.querySelectorAll('.projects-grid').forEach(el => {
             observer.observe(el);
         });
     }

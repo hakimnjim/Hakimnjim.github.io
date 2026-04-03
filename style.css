@@ -413,19 +413,98 @@ h1, h2, h3 {
     -webkit-text-fill-color: transparent;
 }
 
-/* Scroll Animations */
+/* Scroll Animations Base */
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
 }
+
+.reveal-up { transform: translateY(40px); }
+.reveal-left { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
 
 .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
 }
 
-/* Footer */
+/* Hover Effects Enhancement */
+.project-card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-12px) scale(1.01);
+    border-color: var(--accent-blue);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
+                0 0 20px var(--glow-blue),
+                inset 0 0 10px rgba(59, 130, 246, 0.1);
+}
+
+/* Button Glow Enhancement */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    box-shadow: 0 10px 20px -10px var(--glow-blue);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition);
+    transform: scale(0.5);
+}
+
+.btn-primary:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 25px var(--glow-purple), 0 0 45px var(--glow-blue);
+    filter: brightness(1.2);
+}
+
+/* Section Spacing */
 .footer {
     padding: 4rem 0;
     background: #0a0f1d;
