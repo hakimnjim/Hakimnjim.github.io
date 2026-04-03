@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Create Project Card Element
      * @param {Object} project - Project data
-     * @param {Boolean} isFeatured - Whether this is a featured card (uses larger design)
+     * @param {Boolean} isFeatured - Whether this is a featured card
      */
     function createProjectCard(project, isFeatured = false) {
         const card = document.createElement('div');
@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.id = project.id;
         card.dataset.type = project.type;
         
-        const thumbnail = project.images && project.images.length > 0 ? project.images[0] : 'placeholder.jpg';
+        const mediaItems = project.media || [];
+        const firstMedia = mediaItems[0] || { type: 'image', src: 'placeholder.jpg' };
         
         // Generate platform links
         let linksHTML = '';
@@ -96,10 +97,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Generate Thumbnails HTML
+        const thumbnailsHTML = mediaItems.map((item, index) => `
+            <div class="thumb ${index === 0 ? 'active' : ''}" data-index="${index}" data-type="${item.type}" data-src="${item.src}">
+                <img src="${item.thumbnail || item.src}" alt="Thumbnail ${index + 1}">
+                ${item.type === 'video' ? '<i class="fas fa-play thumb-play-icon"></i>' : ''}
+            </div>
+        `).join('');
+
+        // Initial Main Display content
+        let mainDisplayHTML = '';
+        if (firstMedia.type === 'video') {
+            mainDisplayHTML = `<video src="${firstMedia.src}" autoplay muted loop playsinline class="main-media-content"></video>`;
+        } else {
+            mainDisplayHTML = `<img src="${firstMedia.src}" alt="${project.title}" class="main-media-content">`;
+        }
+
         card.innerHTML = `
-            <div class="project-image">
-                <img src="${thumbnail}" alt="${project.title}" loading="lazy">
-                ${isFeatured ? '<div class="featured-badge">Featured Project</div>' : ''}
+            <div class="project-viewer">
+                <div class="main-display">
+                    ${mainDisplayHTML}
+                    ${isFeatured ? '<div class="featured-badge">Featured Project</div>' : ''}
+                </div>
+                <div class="media-strip">
+                    ${thumbnailsHTML}
+                </div>
             </div>
             <div class="project-content">
                 <div class="type-badge type-${project.type}">${project.type}</div>
@@ -122,11 +144,50 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
+        // Media Switching Logic
+        const thumbs = card.querySelectorAll('.thumb');
+        const display = card.querySelector('.main-display');
+
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (thumb.classList.contains('active')) return;
+
+                // Update active state
+                thumbs.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+
+                const type = thumb.dataset.type;
+                const src = thumb.dataset.src;
+
+                // Smooth fade transition
+                const currentMedia = display.querySelector('.main-media-content');
+                currentMedia.style.opacity = '0';
+                currentMedia.style.transform = 'scale(0.95)';
+
+                setTimeout(() => {
+                    display.innerHTML = type === 'video' 
+                        ? `<video src="${src}" autoplay muted loop playsinline class="main-media-content" style="opacity:0; transform:scale(0.95)"></video>`
+                        : `<img src="${src}" alt="Project media" class="main-media-content" style="opacity:0; transform:scale(0.95)">`;
+                    
+                    if (isFeatured) {
+                        display.innerHTML += '<div class="featured-badge">Featured Project</div>';
+                    }
+
+                    const newMedia = display.querySelector('.main-media-content');
+                    // Force reflow
+                    newMedia.offsetHeight;
+                    newMedia.style.opacity = '1';
+                    newMedia.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+
         // Click Tracking System
         card.addEventListener('click', (e) => {
+            if (e.target.closest('.thumb') || e.target.closest('.project-link') || e.target.closest('.btn-track-view')) return;
             trackProjectClick(project.id, project.title);
             
-            // Ripple/Pulse Effect
             const pulse = document.createElement('div');
             pulse.className = 'click-pulse';
             pulse.style.left = `${e.clientX - card.getBoundingClientRect().left}px`;
