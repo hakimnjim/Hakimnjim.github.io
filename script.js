@@ -30,33 +30,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Render Projects to DOM
-    function renderProjects() {
+    function renderProjects(filter = 'all') {
         if (!featuredContainer || !allProjectsContainer) return;
 
-        featuredContainer.innerHTML = '';
+        // Clear only if rendering everything or specific filter
+        if (filter === 'all') {
+            featuredContainer.innerHTML = '';
+        }
         allProjectsContainer.innerHTML = '';
 
         // Get click stats for sorting/featured logic
         const clickStats = getClickStats();
 
-        // Featured Projects Logic: 
-        // 1. Projects marked "featured: true" in JSON
-        // 2. OR top most clicked projects if none are marked
-        const featuredProjects = projects
-            .filter(p => p.featured)
-            .sort((a, b) => (clickStats[b.id] || 0) - (clickStats[a.id] || 0))
-            .slice(0, 2);
+        // Only render featured if filter is 'all'
+        if (filter === 'all') {
+            const featuredProjects = projects
+                .filter(p => p.featured)
+                .sort((a, b) => (clickStats[b.id] || 0) - (clickStats[a.id] || 0))
+                .slice(0, 2);
 
-        featuredProjects.forEach(project => {
-            const projectCard = createProjectCard(project, true);
-            featuredContainer.appendChild(projectCard);
-        });
+            featuredProjects.forEach(project => {
+                const projectCard = createProjectCard(project, true);
+                featuredContainer.appendChild(projectCard);
+            });
+        }
 
-        // All Projects
-        projects.forEach(project => {
+        // All Projects (Filtered)
+        const filteredProjects = filter === 'all' 
+            ? projects 
+            : projects.filter(p => p.type === filter);
+
+        filteredProjects.forEach(project => {
             const projectCard = createProjectCard(project, false);
             allProjectsContainer.appendChild(projectCard);
         });
+
+        // Re-setup scroll animations for new elements
+        setupScrollAnimations();
     }
 
     /**
@@ -68,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = `project-card reveal ${isFeatured ? 'featured-card' : ''}`;
         card.dataset.id = project.id;
+        card.dataset.type = project.type;
         
         const thumbnail = project.images && project.images.length > 0 ? project.images[0] : 'placeholder.jpg';
         
@@ -91,7 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${isFeatured ? '<div class="featured-badge">Featured Project</div>' : ''}
             </div>
             <div class="project-content">
+                <div class="type-badge type-${project.type}">${project.type}</div>
                 <h3 class="project-title">${project.title}</h3>
+                <span class="project-role">${project.role}</span>
                 <p class="project-desc">${project.description}</p>
                 
                 <div class="project-info">
@@ -110,12 +123,30 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         // Click Tracking System
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
             trackProjectClick(project.id, project.title);
+            
+            // Ripple/Pulse Effect
+            const pulse = document.createElement('div');
+            pulse.className = 'click-pulse';
+            pulse.style.left = `${e.clientX - card.getBoundingClientRect().left}px`;
+            pulse.style.top = `${e.clientY - card.getBoundingClientRect().top}px`;
+            card.appendChild(pulse);
+            
+            setTimeout(() => pulse.remove(), 600);
         });
 
         return card;
     }
+
+    // Interactive Background (Mouse Move)
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        
+        document.body.style.setProperty('--mouse-x', `${x}%`);
+        document.body.style.setProperty('--mouse-y', `${y}%`);
+    });
 
     // Click Tracking Logic
     function trackProjectClick(projectId, projectTitle) {
@@ -139,6 +170,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners
     function setupEventListeners() {
+        // Filter System
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add to current
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                // Add fade-out effect to container before re-rendering
+                allProjectsContainer.style.opacity = '0';
+                allProjectsContainer.style.transform = 'translateY(10px)';
+                
+                setTimeout(() => {
+                    renderProjects(filter);
+                    allProjectsContainer.style.opacity = '1';
+                    allProjectsContainer.style.transform = 'translateY(0)';
+                }, 300);
+            });
+        });
+
         // Mobile Menu Toggle
         if (menuToggle && navLinks) {
             menuToggle.addEventListener('click', () => {

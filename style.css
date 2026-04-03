@@ -47,11 +47,33 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at var(--mouse-x, 10%) var(--mouse-y, 20%), rgba(59, 130, 246, 0.08) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.03) 0%, transparent 60%);
     pointer-events: none;
     z-index: -1;
+    transition: background 0.2s ease;
+}
+
+/* Animated Gradient Overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(2, 6, 23, 0) 0%, rgba(59, 130, 246, 0.02) 50%, rgba(2, 6, 23, 0) 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -271,11 +293,47 @@ p {
     box-shadow: 0 0 20px var(--glow-cyan);
 }
 
+/* Filter Controls */
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-cyan);
+    color: #fff;
+}
+
+.filter-btn.active {
+    background: var(--accent-cyan);
+    color: var(--bg-color);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px var(--glow-cyan);
+}
+
 /* Project Card Refinement */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 3.5rem;
+    transition: var(--transition);
 }
 
 .project-card {
@@ -306,12 +364,57 @@ p {
     left: 100%;
 }
 
+/* Project Badges */
+.type-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.type-personal { background: rgba(34, 211, 238, 0.1); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
+.type-client { background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
+.type-published { background: rgba(59, 130, 246, 0.1); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
+
+.project-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    display: block;
+}
+
 .project-card:hover {
-    transform: translateY(-16px);
+    transform: translateY(-16px) scale(1.02) rotate(1deg);
     border-color: rgba(59, 130, 246, 0.4);
     box-shadow: 
         0 40px 80px -20px rgba(0, 0, 0, 0.6),
-        0 0 40px rgba(59, 130, 246, 0.1);
+        0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+.project-card:active {
+    transform: scale(0.98);
+}
+
+/* Click Ripple/Pulse Effect */
+.click-pulse {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: clickPulse 0.6s ease-out;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes clickPulse {
+    to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
 }
 
 .project-image {
