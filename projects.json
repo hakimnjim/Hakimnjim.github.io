@@ -1,0 +1,67 @@
+[
+    {
+        "id": 1,
+        "title": "Neon Nexus",
+        "category": "Cyberpunk RPG",
+        "description": "A high-octane cyberpunk RPG with tactical combat and deep character customization.",
+        "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800",
+        "tags": ["Unity", "C#", "Blender"],
+        "featured": true,
+        "links": {
+            "demo": "#",
+            "source": "#"
+        }
+    },
+    {
+        "id": 2,
+        "title": "Shadow Realm",
+        "category": "Action Platformer",
+        "description": "Fast-paced shadow-themed platformer with unique light/dark mechanics.",
+        "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800",
+        "tags": ["Godot", "GDScript", "Aseprite"],
+        "featured": true,
+        "links": {
+            "demo": "#",
+            "source": "#"
+        }
+    },
+    {
+        "id": 3,
+        "title": "Void Walker",
+        "category": "Horror / Exploration",
+        "description": "Psychological horror game set in a shifting space station.",
+        "image": "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=800",
+        "tags": ["Unreal Engine", "C++", "Quixel"],
+        "featured": false,
+        "links": {
+            "demo": "#",
+            "source": "#"
+        }
+    },
+    {
+        "id": 4,
+        "title": "Pixel Tactics",
+        "category": "Strategy",
+        "description": "Turn-based tactical game with retro pixel art and complex AI.",
+        "image": "https://images.unsplash.com/photo-1552824734-80461676e19e?auto=format&fit=crop&q=80&w=800",
+        "tags": ["Unity", "C#", "Pixel Art"],
+        "featured": false,
+        "links": {
+            "demo": "#",
+            "source": "#"
+        }
+    },
+    {
+        "id": 5,
+        "title": "Crystal Quest",
+        "category": "Puzzle Adventure",
+        "description": "Relaxing puzzle game set in a vibrant crystalline world.",
+        "image": "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?auto=format&fit=crop&q=80&w=800",
+        "tags": ["JavaScript", "Three.js", "WebAudio"],
+        "featured": false,
+        "links": {
+            "demo": "#",
+            "source": "#"
+        }
+    }
+]

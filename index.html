@@ -3,13 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <meta name="description" content="Indie Game Developer Portfolio - Creative game development and design.">
+    <title>Indie Game Developer | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-theme">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">GAME<span>DEV</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#projects">All Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
 
-    <h1>Hello, I'm Hakim 👋</h1>
-    <p>Welcome to my portfolio website.</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="subtitle">Indie Game Developer</h2>
+                    <h1 class="title">Crafting <span class="highlight">Immersive Worlds</span> & Digital Experiences</h1>
+                    <p class="description">Building unique game mechanics, stunning visuals, and unforgettable gameplay experiences from scratch.</p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section id="featured" class="featured-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured <span>Projects</span></h2>
+                    <p class="section-subtitle">A selection of my best work and game development highlights.</p>
+                </div>
+                <div id="featured-container" class="projects-grid">
+                    <!-- Featured projects will be rendered here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- All Projects Section -->
+        <section id="projects" class="all-projects-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">All <span>Projects</span></h2>
+                    <p class="section-subtitle">Exploring different genres, mechanics, and experimental game design.</p>
+                </div>
+                <div id="all-projects-container" class="projects-grid">
+                    <!-- All projects will be rendered here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical <span>Skills</span></h2>
+                    <p class="section-subtitle">The tools and technologies I use to bring ideas to life.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Game Engines</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">Unity</div>
+                            <div class="skill-item">Unreal Engine</div>
+                            <div class="skill-item">Godot</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Programming</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">C#</div>
+                            <div class="skill-item">C++</div>
+                            <div class="skill-item">Python</div>
+                            <div class="skill-item">JavaScript</div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Design & Audio</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">Blender</div>
+                            <div class="skill-item">Aseprite</div>
+                            <div class="skill-item">Figma</div>
+                            <div class="skill-item">FL Studio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section section-padding">
+            <div class="container">
+                <div class="about-wrapper">
+                    <div class="about-content">
+                        <div class="section-header left-align">
+                            <h2 class="section-title">About <span>Me</span></h2>
+                        </div>
+                        <p>I'm a passionate Indie Game Developer with a focus on creating unique and engaging experiences. With a background in software engineering and a love for storytelling, I blend technical skills with creative vision.</p>
+                        <p>I believe that games are the ultimate medium for expression, and I'm dedicated to pushing the boundaries of what's possible in the indie scene.</p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-label">Years Exp</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Games Made</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Awards Won</span>
+                            </div>
+                        </div>
+                        <a href="resume.pdf" download class="btn btn-primary resume-btn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                    <div class="about-image">
+                        <div class="image-frame">
+                            <!-- Placeholder for developer avatar/photo -->
+                            <div class="placeholder-img"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In <span>Touch</span></h2>
+                    <p class="section-subtitle">Have a project in mind or want to collaborate? Let's talk!</p>
+                </div>
+                <div class="contact-links">
+                    <a href="https://wa.me/yournumber" target="_blank" class="contact-card whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="contact-card linkedin">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="contact-card email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://discordapp.com/users/yourid" target="_blank" class="contact-card discord">
+                        <i class="fab fa-discord"></i>
+                        <span>Discord</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GameDev Portfolio. Built with ❤️ for the Indie Community.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
