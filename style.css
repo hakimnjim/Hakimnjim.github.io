@@ -306,6 +306,57 @@ h1, h2, h3 {
     color: white;
 }
 
+/* Featured Cards */
+.featured-card {
+    grid-column: span 1;
+    border-width: 2px;
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+}
+
+.featured-card .project-image {
+    height: 300px;
+}
+
+.featured-card .project-title {
+    font-size: 2.25rem;
+    color: var(--accent-cyan);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent-purple);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px var(--glow-purple);
+    z-index: 10;
+}
+
+.btn-track-view {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-track-view:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--glow-cyan);
+}
+
 /* Skills */
 .skill-item {
     background: rgba(255, 255, 255, 0.03);
@@ -385,6 +436,12 @@ h1, h2, h3 {
 @media (max-width: 1024px) {
     .title { font-size: 4rem; }
     .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+    #featured-container {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 768px) {

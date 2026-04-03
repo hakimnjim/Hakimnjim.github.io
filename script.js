@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProjects();
             setupEventListeners();
             setupScrollAnimations();
-            updateClickStats();
+            logClickStats();
         } catch (error) {
             console.error('Initialization failed:', error);
         }
@@ -36,34 +36,42 @@ document.addEventListener('DOMContentLoaded', () => {
         featuredContainer.innerHTML = '';
         allProjectsContainer.innerHTML = '';
 
-        projects.forEach(project => {
-            const projectCard = createProjectCard(project);
-            
-            if (project.featured) {
-                featuredContainer.appendChild(projectCard.cloneNode(true));
-            }
-            
-            allProjectsContainer.appendChild(projectCard);
+        // Get click stats for sorting/featured logic
+        const clickStats = getClickStats();
+
+        // Featured Projects Logic: 
+        // 1. Projects marked "featured: true" in JSON
+        // 2. OR top most clicked projects if none are marked
+        const featuredProjects = projects
+            .filter(p => p.featured)
+            .sort((a, b) => (clickStats[b.id] || 0) - (clickStats[a.id] || 0))
+            .slice(0, 2);
+
+        featuredProjects.forEach(project => {
+            const projectCard = createProjectCard(project, true);
+            featuredContainer.appendChild(projectCard);
         });
 
-        // Add click tracking to all project links
-        document.querySelectorAll('.project-link, .btn').forEach(link => {
-            link.addEventListener('click', (e) => {
-                const label = e.currentTarget.innerText || e.currentTarget.getAttribute('aria-label');
-                trackClick(label);
-            });
+        // All Projects
+        projects.forEach(project => {
+            const projectCard = createProjectCard(project, false);
+            allProjectsContainer.appendChild(projectCard);
         });
     }
 
-    // Create Project Card Element
-    function createProjectCard(project) {
+    /**
+     * Create Project Card Element
+     * @param {Object} project - Project data
+     * @param {Boolean} isFeatured - Whether this is a featured card (uses larger design)
+     */
+    function createProjectCard(project, isFeatured = false) {
         const card = document.createElement('div');
-        card.className = 'project-card reveal';
+        card.className = `project-card reveal ${isFeatured ? 'featured-card' : ''}`;
+        card.dataset.id = project.id;
         
-        // Use the first image from the array as the thumbnail
         const thumbnail = project.images && project.images.length > 0 ? project.images[0] : 'placeholder.jpg';
         
-        // Generate link icons based on availability
+        // Generate platform links
         let linksHTML = '';
         if (project.links) {
             if (project.links.steam && project.links.steam !== '#') {
@@ -80,13 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
         card.innerHTML = `
             <div class="project-image">
                 <img src="${thumbnail}" alt="${project.title}" loading="lazy">
+                ${isFeatured ? '<div class="featured-badge">Featured Project</div>' : ''}
             </div>
             <div class="project-content">
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-desc">${project.description}</p>
                 
                 <div class="project-info">
-                    <p class="learned"><strong>What I learned:</strong> ${project.learned}</p>
+                    <p class="learned"><strong>Key Learning:</strong> ${project.learned}</p>
                 </div>
 
                 <div class="project-tags">
@@ -95,10 +104,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 <div class="project-links">
                     ${linksHTML}
+                    <button class="btn-track-view" onclick="event.stopPropagation()">View Details</button>
                 </div>
             </div>
         `;
+
+        // Click Tracking System
+        card.addEventListener('click', () => {
+            trackProjectClick(project.id, project.title);
+        });
+
         return card;
+    }
+
+    // Click Tracking Logic
+    function trackProjectClick(projectId, projectTitle) {
+        const stats = getClickStats();
+        stats[projectId] = (stats[projectId] || 0) + 1;
+        localStorage.setItem('game_dev_portfolio_clicks', JSON.stringify(stats));
+        
+        console.log(`%c 🎮 Project Clicked: ${projectTitle} | Total Views: ${stats[projectId]}`, 'color: #22d3ee; font-weight: bold;');
+    }
+
+    function getClickStats() {
+        return JSON.parse(localStorage.getItem('game_dev_portfolio_clicks') || '{}');
+    }
+
+    function logClickStats() {
+        const stats = getClickStats();
+        if (Object.keys(stats).length > 0) {
+            console.log('%c 📊 Current Interaction Stats:', 'color: #a855f7; font-weight: bold;', stats);
+        }
     }
 
     // Event Listeners
@@ -112,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.toggle('fa-times');
             });
 
-            // Close menu when clicking a link
             navLinks.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
@@ -154,30 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, observerOptions);
 
-        // Add reveal class to sections
-        document.querySelectorAll('section, .project-card, .skill-category, .contact-card').forEach(el => {
+        document.querySelectorAll('section, .project-card, .skill-item, .contact-card, .stat-item').forEach(el => {
             el.classList.add('reveal');
             observer.observe(el);
         });
-    }
-
-    // Click Tracking System
-    function trackClick(label) {
-        if (!label) return;
-        
-        const clicks = JSON.parse(localStorage.getItem('portfolio_clicks') || '{}');
-        clicks[label] = (clicks[label] || 0) + 1;
-        localStorage.setItem('portfolio_clicks', JSON.stringify(clicks));
-        
-        console.log(`Tracked click: ${label}. Total: ${clicks[label]}`);
-    }
-
-    function updateClickStats() {
-        const clicks = JSON.parse(localStorage.getItem('portfolio_clicks') || '{}');
-        // You could use this to show most popular projects, etc.
-        // For now, just logging to console
-        if (Object.keys(clicks).length > 0) {
-            console.log('User interaction stats:', clicks);
-        }
     }
 });
