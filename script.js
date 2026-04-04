@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .filter((project) => project.featured)
             .sort((a, b) => (clickStats[b.id] || 0) - (clickStats[a.id] || 0))
             .slice(0, 2);
+        const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
 
         if (filter === "all") {
             featuredProjects.forEach((project) => {
@@ -56,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const filteredProjects = filter === "all"
-            ? projects
+            ? projects.filter((project) => !featuredProjectIds.has(project.id))
             : projects.filter((project) => project.type === filter);
 
         filteredProjects.forEach((project) => {
@@ -118,11 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const youTubeEmbedUrl = getYouTubeEmbedUrl(mediaItem.src);
 
         if (youTubeEmbedUrl) {
-            return `<iframe src="${youTubeEmbedUrl}" class="main-media-content" title="${escapeAttribute(project.title)} gameplay video" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+            return `<iframe src="${youTubeEmbedUrl}" class="main-media-content" title="${escapeAttribute(project.title)} gameplay video" loading="eager" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
         }
 
         if (mediaItem.type === "video" && mediaItem.src) {
-            return `<video src="${mediaItem.src}" autoplay muted loop playsinline class="main-media-content" aria-label="${escapeAttribute(project.title)} gameplay video"></video>`;
+            return `<video src="${mediaItem.src}" controls playsinline class="main-media-content" aria-label="${escapeAttribute(project.title)} gameplay video"></video>`;
         }
 
         if (mediaItem.src) {
