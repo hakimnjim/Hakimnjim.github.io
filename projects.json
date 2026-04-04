@@ -28,7 +28,7 @@
             "steam": "#",
             "download": "#"
         },
-        "featured": true
+        "featured": false
     },
     {
         "id": 2,
@@ -124,5 +124,35 @@
             "download": "#"
         },
         "featured": false
+    },
+    {
+        "id": 5,
+        "title": "OVERLODE: Battle over Azmonite",
+        "type": "prototype",
+        "role": "Unity Game Developer",
+        "description": "Worked as part of a development team on OVERLODE: Battle over Azmonite, contributing to the design and implementation of core gameplay systems. Collaborated with other developers and designers to build scalable mechanics, ensure smooth system integration, and maintain code quality across shared components.Focused on delivering responsive gameplay features while aligning with the overall game vision and team workflow.",
+        "skills": ["Unity (C#)","Finite State Machines","A*"],
+        "learned": "Working in a team environment taught me how to design systems that are modular, maintainable, and easy to integrate with other components. I improved my ability to collaborate with different roles, communicate technical ideas clearly, and adapt my code based on team needs and feedback.I also gained deeper experience in structuring gameplay systems such as AI behavior (FSM) and pathfinding (A*), while ensuring performance and scalability in a real-time action context.",
+        "media": [
+             {
+                "type": "video",
+                "src": "https://youtu.be/TO0QdATEQTo?si=OrA0OgmKrRV1xmRf",
+                "thumbnail": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2428230/ss_e9074f7e5647c1b36de45bbc5a2ab03a9b9a060b.1920x1080.jpg?t=1712500862"
+            },
+            {
+                "type": "image",
+                "src": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2428230/ss_c85c608a14613d8ca21eb65e0778cd62f02fb598.1920x1080.jpg?t=1712500862"
+            },
+            {
+                "type": "image",
+                "src": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2428230/ss_c5cbc644d60f79b208ca3010c025a3793d56de68.1920x1080.jpg?t=1712500862"
+            }
+        ],
+        "links": {
+            "playstore": "",
+            "steam": "https://store.steampowered.com/app/2428230/OVERLODE_Battle_over_Azmonite/",
+            "download": "#"
+        },
+        "featured": true
     }
 ]
