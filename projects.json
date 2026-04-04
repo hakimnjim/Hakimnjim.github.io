@@ -1,29 +1,30 @@
 [
     {
         "id": 1,
-        "title": "Neon Nexus",
+        "title": "Dark Imposter",
         "type": "published",
         "role": "Solo Developer",
-        "description": "A high-octane cyberpunk RPG with tactical combat and deep character customization.",
-        "skills": ["Unity", "C#", "Shader Graph", "Blender"],
-        "learned": "Mastered complex state machine systems for tactical combat and advanced lighting techniques.",
+        "description": "Developed a mobile stealth-action game using Unity (C#), focusing on core gameplay systems, AI behavior, and level progression. Implemented smooth player controls, enemy interactions, and engaging mechanics for scalable, replayable gameplay.",
+        "skills": ["Unity", "C#", "Firebase", "Unity Ads"],
+        "learned": "Designed and implemented core gameplay systems and mechanics. Developed AI behavior and enemy interaction logic. Built scalable level progression systems. Collaborated with publisher (OneSoft) to refine gameplay based on feedback and release requirements",
         "media": [
             {
+                
                 "type": "video",
-                "src": "https://www.w3schools.com/html/mov_bbb.mp4",
-                "thumbnail": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=200"
+                "src": "https://youtu.be/pb8XkU7Mdn4?si=jhgZswXJzFB3RSoW",
+                "thumbnail": "https://play-lh.googleusercontent.com/uuQTcjXtF-sbs6sQ4HQkb_T4xMTaMMTWTEkyvld93Z4CpqkETlksOz7htcuqK_1D5Q=w2560-h1440-rw?auto=format&fit=crop&q=80&w=200"
             },
             {
                 "type": "image",
-                "src": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800"
+                "src": "https://play-lh.googleusercontent.com/bAbpE7wfTm_NKuB0mHe_yZTlg5cb7TvedMNgTk5o3TkJY_Dt46li5WUse80bZoUSscw=w2560-h1440-rw?auto=format&fit=crop&q=80&w=800"
             },
             {
                 "type": "image",
-                "src": "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=800"
+                "src": "https://play-lh.googleusercontent.com/Z1E609tn65NxoO5nbVDvCtsb5qtsOZFBbRa_zZlnON2eWkHY2gz80_VR23gIb-Kc7Q=w2560-h1440-rw?auto=format&fit=crop&q=80&w=800"
             }
         ],
         "links": {
-            "playstore": "#",
+            "playstore": "https://play.google.com/store/apps/details?id=com.sysics.rocket.dark.impostor&hl=fr",
             "steam": "#",
             "download": "#"
         },
