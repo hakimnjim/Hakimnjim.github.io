@@ -3,96 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Indie Game Developer Portfolio - Creative game development and design.">
-    <title>Indie Game Developer | Portfolio</title>
-    
-    <!-- Google Fonts -->
+    <meta name="description" content="Portfolio of Hakim Njim, a game developer building immersive gameplay systems, polished prototypes, and shipped interactive experiences.">
+    <meta name="keywords" content="Hakim Njim, game developer, Unity developer, Unreal developer, gameplay programmer, indie game portfolio">
+    <meta name="author" content="Hakim Njim">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#020617">
+    <link rel="canonical" href="https://hakimnjim.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hakim Njim | Game Developer Portfolio">
+    <meta property="og:description" content="Explore featured games, technical skills, and interactive projects built by Hakim Njim.">
+    <meta property="og:url" content="https://hakimnjim.github.io/">
+    <meta property="og:site_name" content="Hakim Njim Portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hakim Njim | Game Developer Portfolio">
+    <meta name="twitter:description" content="Game development portfolio featuring shipped projects, technical skills, and gameplay-focused work.">
+    <title>Hakim Njim | Game Developer Portfolio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">GAME<span>DEV</span></a>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#featured">Featured</a></li>
-                <li><a href="#projects">All Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary">
+            <div class="container">
+                <a href="#hero" class="logo" aria-label="Hakim Njim home">HAKIM<span>NJIM</span></a>
+                <ul class="nav-links" id="primary-navigation">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#featured">Featured</a></li>
+                    <li><a href="#projects">All Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section id="hero" class="hero-section" aria-labelledby="hero-title">
             <div class="container">
                 <div class="hero-content">
-                    <h2 class="subtitle">Indie Game Developer</h2>
-                    <h1 class="title">Crafting <span class="highlight">Immersive Worlds</span> & Digital Experiences</h1>
-                    <p class="description">Building unique game mechanics, stunning visuals, and unforgettable gameplay experiences from scratch.</p>
+                    <p class="subtitle">Gameplay Programmer • Unity • Unreal • Interactive Prototyping</p>
+                    <h1 id="hero-title" class="title">Building <span class="highlight">immersive games</span> with sharp systems, fast iteration, and player-first design.</h1>
+                    <p class="description">I design and ship gameplay experiences that balance technical depth, visual polish, and memorable moment-to-moment interaction.</p>
+                    <ul class="hero-meta" aria-label="Quick highlights">
+                        <li>Shipped mobile and prototype projects</li>
+                        <li>Gameplay systems, AI, and tools</li>
+                        <li>Available for freelance and collaboration</li>
+                    </ul>
                     <div class="hero-btns">
                         <a href="#projects" class="btn btn-primary">View My Work</a>
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
             </div>
-            <div class="scroll-indicator">
+            <div class="scroll-indicator" aria-hidden="true">
                 <div class="mouse"></div>
             </div>
         </section>
 
-        <!-- Featured Projects Section -->
-        <section id="featured" class="featured-section section-padding">
+        <section id="featured" class="featured-section section-padding" aria-labelledby="featured-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Featured <span>Projects</span></h2>
+                    <p class="section-kicker">Featured Work</p>
+                    <h2 id="featured-title" class="section-title">Featured <span>Projects</span></h2>
                     <p class="section-subtitle">A selection of my best work and game development highlights.</p>
                 </div>
-                <div id="featured-container" class="projects-grid">
+                <div id="featured-container" class="projects-grid" aria-live="polite">
                     <!-- Featured projects will be rendered here by JS -->
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="all-projects-section section-padding">
+        <section id="projects" class="all-projects-section section-padding" aria-labelledby="projects-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">All <span>Projects</span></h2>
+                    <p class="section-kicker">Portfolio Archive</p>
+                    <h2 id="projects-title" class="section-title">All <span>Projects</span></h2>
                     <p class="section-subtitle">Exploring different genres, mechanics, and experimental game design.</p>
                 </div>
-                
-                <!-- Filter Buttons -->
-                <div class="filter-controls">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="personal">Personal</button>
-                    <button class="filter-btn" data-filter="client">Client</button>
-                    <button class="filter-btn" data-filter="published">Published</button>
+
+                <div class="filter-controls" role="toolbar" aria-label="Project filters">
+                    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+                    <button class="filter-btn" type="button" data-filter="personal" aria-pressed="false">Personal</button>
+                    <button class="filter-btn" type="button" data-filter="client" aria-pressed="false">Client</button>
+                    <button class="filter-btn" type="button" data-filter="published" aria-pressed="false">Published</button>
                 </div>
 
-                <div id="all-projects-container" class="projects-grid">
+                <div id="all-projects-container" class="projects-grid" aria-live="polite">
                     <!-- All projects will be rendered here by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="skills-section section-padding">
+        <section id="skills" class="skills-section section-padding" aria-labelledby="skills-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Technical <span>Skills</span></h2>
+                    <p class="section-kicker">Tech Stack</p>
+                    <h2 id="skills-title" class="section-title">Technical <span>Skills</span></h2>
                     <p class="section-subtitle">The tools and technologies I use to bring ideas to life.</p>
                 </div>
                 <div class="skills-grid">
@@ -126,16 +142,26 @@
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about-section section-padding">
+        <section id="about" class="about-section section-padding" aria-labelledby="about-title">
             <div class="container">
                 <div class="about-wrapper">
                     <div class="about-content">
                         <div class="section-header left-align">
-                            <h2 class="section-title">About <span>Me</span></h2>
+                            <p class="section-kicker">Developer Profile</p>
+                            <h2 id="about-title" class="section-title">About <span>Me</span></h2>
                         </div>
-                        <p>I'm a passionate Indie Game Developer with a focus on creating unique and engaging experiences. With a background in software engineering and a love for storytelling, I blend technical skills with creative vision.</p>
-                        <p>I believe that games are the ultimate medium for expression, and I'm dedicated to pushing the boundaries of what's possible in the indie scene.</p>
+                        <p>I'm Hakim Njim, a software engineer and game developer focused on turning strong gameplay ideas into polished, testable experiences. I enjoy building mechanics that feel responsive, scalable, and satisfying from the first prototype to the final release.</p>
+                        <p>My work blends engineering discipline with creative iteration, whether that means designing AI behavior, shaping level flow, or collaborating with teams to ship cleaner and more engaging products.</p>
+                        <div class="about-highlights" aria-label="Core strengths">
+                            <div class="about-highlight">
+                                <strong>Systems Thinking</strong>
+                                <span>Gameplay loops, progression, and technical implementation.</span>
+                            </div>
+                            <div class="about-highlight">
+                                <strong>Rapid Iteration</strong>
+                                <span>Prototyping quickly, validating ideas early, and refining based on feedback.</span>
+                            </div>
+                        </div>
                         <div class="about-stats">
                             <div class="stat-item">
                                 <span class="stat-number">5+</span>
@@ -150,41 +176,50 @@
                                 <span class="stat-label">Awards Won</span>
                             </div>
                         </div>
-                        <a href="resume.pdf" download class="btn btn-primary resume-btn">
+                        <a href="#contact" class="btn btn-primary resume-btn">
                             <i class="fas fa-download"></i> Download Resume
                         </a>
+                        <p class="resume-note">Resume available on request until a downloadable copy is published.</p>
                     </div>
                     <div class="about-image">
                         <div class="image-frame">
-                            <!-- Placeholder for developer avatar/photo -->
-                            <div class="placeholder-img"></div>
+                            <div class="placeholder-img" role="img" aria-label="Abstract illustration representing Hakim Njim's game development process">
+                                <div class="placeholder-orb orb-one"></div>
+                                <div class="placeholder-orb orb-two"></div>
+                                <div class="placeholder-panel">
+                                    <span>Gameplay</span>
+                                    <span>Systems</span>
+                                    <span>Polish</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section section-padding">
+        <section id="contact" class="contact-section section-padding" aria-labelledby="contact-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Get In <span>Touch</span></h2>
+                    <p class="section-kicker">Let's Connect</p>
+                    <h2 id="contact-title" class="section-title">Get In <span>Touch</span></h2>
                     <p class="section-subtitle">Have a project in mind or want to collaborate? Let's talk!</p>
                 </div>
+                <p class="contact-intro">The links below are ready for your real profiles and contact details. Replace the placeholders when you publish final contact information.</p>
                 <div class="contact-links">
-                    <a href="https://wa.me/yournumber" target="_blank" class="contact-card whatsapp">
+                    <a href="https://wa.me/yournumber" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp" aria-label="Open WhatsApp profile placeholder">
                         <i class="fab fa-whatsapp"></i>
                         <span>WhatsApp</span>
                     </a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="contact-card linkedin">
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="contact-card linkedin" aria-label="Open LinkedIn profile placeholder">
                         <i class="fab fa-linkedin"></i>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="mailto:your.email@example.com" class="contact-card email">
+                    <a href="mailto:your.email@example.com" class="contact-card email" aria-label="Send email to placeholder address">
                         <i class="fas fa-envelope"></i>
                         <span>Email</span>
                     </a>
-                    <a href="https://discordapp.com/users/yourid" target="_blank" class="contact-card discord">
+                    <a href="https://discordapp.com/users/yourid" target="_blank" rel="noopener noreferrer" class="contact-card discord" aria-label="Open Discord profile placeholder">
                         <i class="fab fa-discord"></i>
                         <span>Discord</span>
                     </a>
@@ -195,10 +230,26 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 GameDev Portfolio. Built with ❤️ for the Indie Community.</p>
+            <p>&copy; 2026 Hakim Njim. Built for thoughtful game development and strong player experiences.</p>
         </div>
     </footer>
 
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Hakim Njim",
+            "jobTitle": "Game Developer",
+            "url": "https://hakimnjim.github.io/",
+            "knowsAbout": [
+                "Game Development",
+                "Gameplay Programming",
+                "Unity",
+                "Unreal Engine",
+                "Prototyping"
+            ]
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
