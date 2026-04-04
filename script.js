@@ -115,6 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderMainMedia(project, mediaItem) {
+        const youTubeEmbedUrl = getYouTubeEmbedUrl(mediaItem.src);
+
+        if (youTubeEmbedUrl) {
+            return `<iframe src="${youTubeEmbedUrl}" class="main-media-content" title="${escapeAttribute(project.title)} gameplay video" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+        }
+
         if (mediaItem.type === "video" && mediaItem.src) {
             return `<video src="${mediaItem.src}" autoplay muted loop playsinline class="main-media-content" aria-label="${escapeAttribute(project.title)} gameplay video"></video>`;
         }
@@ -362,6 +368,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </article>
         `;
+    }
+
+    function getYouTubeEmbedUrl(url) {
+        if (!url) {
+            return "";
+        }
+
+        try {
+            const parsedUrl = new URL(url, window.location.href);
+            const host = parsedUrl.hostname.replace(/^www\./, "");
+
+            if (host === "youtu.be") {
+                const videoId = parsedUrl.pathname.split("/").filter(Boolean)[0];
+                return videoId ? `https://www.youtube.com/embed/${videoId}?rel=0` : "";
+            }
+
+            if (host === "youtube.com" || host === "m.youtube.com") {
+                if (parsedUrl.pathname === "/watch") {
+                    const videoId = parsedUrl.searchParams.get("v");
+                    return videoId ? `https://www.youtube.com/embed/${videoId}?rel=0` : "";
+                }
+
+                if (parsedUrl.pathname.startsWith("/embed/")) {
+                    return `${parsedUrl.origin}${parsedUrl.pathname}?rel=0`;
+                }
+
+                if (parsedUrl.pathname.startsWith("/shorts/")) {
+                    const videoId = parsedUrl.pathname.split("/").filter(Boolean)[1];
+                    return videoId ? `https://www.youtube.com/embed/${videoId}?rel=0` : "";
+                }
+            }
+        } catch (error) {
+            console.warn("Invalid media URL:", url, error);
+        }
+
+        return "";
     }
 
     function escapeHtml(value) {
