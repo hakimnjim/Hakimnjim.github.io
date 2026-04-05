@@ -111,11 +111,11 @@
             },
             {
                 "type": "image",
-                "src": "assets/images/robotwarthumbel.png"
+                "src": "assets/images/robetwarthumbel.png"
             },
             {
                 "type": "image",
-                "src": "assets/images/robot warpng.png"
+                "src": "assets/images/robot_warpng.png"
             }
         ],
         "links": {
