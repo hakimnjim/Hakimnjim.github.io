@@ -106,20 +106,20 @@
         "media": [
              {
                 "type": "video",
-                "src": "https://youtu.be/BYqlFlRoqW0",
+                "src": "blob:https://www.canva.com/b0cf162e-2df1-4c9c-9543-86d1e7f9f040",
                 "thumbnail": "https://play-lh.googleusercontent.com/PpECnvMQwjbD_wDyKUJpE3mZU2tNQHbG35cb3Ln-lOMjTUuZ0hG1Rt8ffFr6ApooNpwV=w526-h296-rw"
             },
             {
                 "type": "image",
-                "src": "https://play-lh.googleusercontent.com/RpLWLJQbemIM-bn3GkwNZcpW1BVXy93z4fraLKC2F9r3h1r2AiL5P8k89zIVYxTIiJU=w526-h296-rw"
+                "src": "assets/images/robotwarthumbel.png"
             },
             {
                 "type": "image",
-                "src": "https://play-lh.googleusercontent.com/xsmgF9JM9CETdnQrbD2FWAGXaPNwAfNHr8HXdowIorTfqinnAJpN-6aqEZ-IoQBpyeFC=w526-h296-rw"
+                "src": "assets/images/robot warpng.png"
             }
         ],
         "links": {
-            "playstore": "https://play.google.com/store/apps/details?id=com.SysicsStudio.ShadowOfNexus",
+            "playstore": "#",
             "steam": "#",
             "download": "#"
         },
