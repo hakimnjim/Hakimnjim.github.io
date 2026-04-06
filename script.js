@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const navbar = document.querySelector(".navbar");
     const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
     const clickStorageKey = "game_dev_portfolio_clicks";
+    let mouseFramePending = false;
+    let pendingMouseX = 12;
+    let pendingMouseY = 18;
 
     let projects = [];
     let smallProjects = [];
@@ -135,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.innerHTML = `
             <div class="project-viewer">
                 <div class="main-display">
-                    ${renderMainMedia(project, firstMedia)}
+                    ${renderMainMedia(project, firstMedia, isFeatured)}
                     ${isFeatured ? '<div class="featured-badge">Featured</div>' : ""}
                 </div>
                 <div class="media-strip" aria-label="${project.title} media gallery">
@@ -222,19 +225,20 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    function renderMainMedia(project, mediaItem) {
+    function renderMainMedia(project, mediaItem, prioritizeLoading = false) {
         const youTubeEmbedUrl = getYouTubeEmbedUrl(mediaItem.src);
+        const loadingMode = prioritizeLoading ? "eager" : "lazy";
 
         if (youTubeEmbedUrl) {
-            return `<iframe src="${youTubeEmbedUrl}" class="main-media-content" title="${escapeAttribute(project.title)} gameplay video" loading="eager" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+            return `<iframe src="${youTubeEmbedUrl}" class="main-media-content" title="${escapeAttribute(project.title)} gameplay video" loading="${loadingMode}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
         }
 
         if (mediaItem.type === "video" && mediaItem.src) {
-            return `<video src="${mediaItem.src}" controls playsinline class="main-media-content" aria-label="${escapeAttribute(project.title)} gameplay video"></video>`;
+            return `<video src="${mediaItem.src}" controls playsinline preload="metadata" class="main-media-content" aria-label="${escapeAttribute(project.title)} gameplay video"></video>`;
         }
 
         if (mediaItem.src) {
-            return `<img src="${mediaItem.src}" alt="${escapeAttribute(project.title)} preview" class="main-media-content" loading="eager">`;
+            return `<img src="${mediaItem.src}" alt="${escapeAttribute(project.title)} preview" class="main-media-content" loading="${loadingMode}" decoding="async">`;
         }
 
         return `<div class="main-media-content" aria-hidden="true"></div>`;
@@ -316,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 window.setTimeout(() => {
                     display.innerHTML = `
-                        ${renderMainMedia(project, selectedMedia)}
+                        ${renderMainMedia(project, selectedMedia, isFeatured)}
                         ${isFeatured ? '<div class="featured-badge">Featured</div>' : ""}
                     `;
 
@@ -417,11 +421,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         document.addEventListener("mousemove", (event) => {
-            const x = (event.clientX / window.innerWidth) * 100;
-            const y = (event.clientY / window.innerHeight) * 100;
-            document.body.style.setProperty("--mouse-x", `${x}%`);
-            document.body.style.setProperty("--mouse-y", `${y}%`);
-        });
+            pendingMouseX = (event.clientX / window.innerWidth) * 100;
+            pendingMouseY = (event.clientY / window.innerHeight) * 100;
+
+            if (mouseFramePending) {
+                return;
+            }
+
+            mouseFramePending = true;
+            window.requestAnimationFrame(() => {
+                document.body.style.setProperty("--mouse-x", `${pendingMouseX}%`);
+                document.body.style.setProperty("--mouse-y", `${pendingMouseY}%`);
+                mouseFramePending = false;
+            });
+        }, { passive: true });
 
         window.addEventListener("scroll", () => {
             if (!navbar) {
@@ -432,7 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
             navbar.style.padding = compact ? "0.85rem 0" : "1.2rem 0";
             navbar.style.background = compact ? "rgba(2, 6, 23, 0.92)" : "rgba(2, 6, 23, 0.72)";
             navbar.style.boxShadow = compact ? "0 18px 40px rgba(2, 6, 23, 0.28)" : "none";
-        });
+        }, { passive: true });
     }
 
     function setupScrollAnimations() {
