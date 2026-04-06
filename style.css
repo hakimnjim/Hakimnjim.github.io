@@ -452,7 +452,7 @@ p {
 
 .small-project-media-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 0.85rem;
 }
 
@@ -1056,7 +1056,7 @@ p {
     }
 
     .small-project-media-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1fr;
     }
 
     .small-project-video-shell {
