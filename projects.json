@@ -63,7 +63,7 @@
             "steam": "#",
             "download": "#"
         },
-        "featured": true
+        "featured": false
     },
     {
         "id": 3,

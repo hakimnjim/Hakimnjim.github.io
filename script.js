@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .filter((project) => project.featured)
             .sort((a, b) => (clickStats[b.id] || 0) - (clickStats[a.id] || 0))
             .slice(0, 2);
-        const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
 
         if (filter === "all") {
             featuredProjects.forEach((project) => {
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const filteredProjects = filter === "all"
-            ? projects.filter((project) => !featuredProjectIds.has(project.id))
+            ? projects
             : projects.filter((project) => project.type === filter);
 
         filteredProjects.forEach((project) => {
