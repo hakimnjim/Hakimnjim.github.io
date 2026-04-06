@@ -223,5 +223,31 @@
             "download": "#"
         },
         "featured": false
-    }
+    },
+    {
+    "id": 8,
+    "title": "Windmill",
+    "type": "client",
+    "role": "Game Developer",
+    "description": "Developed a real-time multiplayer game experience for a live event in the Netherlands, designed to run continuously across 5 player screens and a dedicated server display. Built using Unity (C#) with Photon networking, the system was engineered for infinite runtime without interruptions. Focused on stability, synchronization, and seamless gameplay across multiple connected machines in a live environment.",
+    "skills": ["Unity", "C#", "Photon Networking", "Multiplayer Systems", "System Stability", "Real-Time Synchronization", "Audio-Visual Integration"],
+    "learned": "Learned how to design and maintain a multiplayer system that runs continuously without crashes, focusing on long-session stability and network reliability. Solved challenges related to Photon disconnections and ensured consistent synchronization across multiple clients. Also gained experience in enhancing player engagement during live events by integrating additional audio and visual feedback systems to communicate game states clearly and create an immersive experience.",
+    "media": [
+        {
+            "type": "video",
+                "src": "assets/videos/windmill.mp4",
+                "thumbnail": "assets/videos/windmill.jpg"
+            },
+        {
+            "type": "image",
+            "src": "assets/videos/windmill2.png"
+        }
+    ],
+    "links": {
+        "playstore": "#",
+        "steam": "#",
+        "download": "https://highlightsofholland.com/?gad_source=1&gad_campaignid=22264844369&gbraid=0AAAAA-56btgg6A7wcwajvr5Sj5Zsg9VcB&gclid=CjwKCAiAkvDMBhBMEiwAnUA9BbdCFVf9NX7fbGSmLYzzob27mubGWnhMpc36C81GB8RXVsy3Nc2vPRoCTTkQAvD_BwE"
+    },
+    "featured": false
+}
 ]
