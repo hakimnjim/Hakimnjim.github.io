@@ -655,8 +655,17 @@ p {
     background: rgba(34, 211, 238, 0.16);
 }
 
+.type-prototype {
+    color: #d8b4fe;
+    background: rgba(168, 85, 247, 0.16);
+}
+
 .project-title {
     font-size: 1.7rem;
+}
+
+.empty-project-state {
+    grid-column: 1 / -1;
 }
 
 .project-role {

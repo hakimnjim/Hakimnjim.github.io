@@ -84,6 +84,20 @@ document.addEventListener("DOMContentLoaded", () => {
             ? projects
             : projects.filter((project) => project.type === filter);
 
+        if (filteredProjects.length === 0) {
+            allProjectsContainer.innerHTML = `
+                <article class="project-card empty-project-state">
+                    <div class="project-content">
+                        <div class="type-badge">No Projects</div>
+                        <h3 class="project-title">No projects in this category yet</h3>
+                        <p class="project-desc">Try another filter or add more items to <code>projects.json</code>.</p>
+                    </div>
+                </article>
+            `;
+            observeRevealTargets();
+            return;
+        }
+
         filteredProjects.forEach((project) => {
             allProjectsContainer.appendChild(createProjectCard(project, false));
         });
