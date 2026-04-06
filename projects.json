@@ -172,7 +172,7 @@
                         {
                 "type": "image",
                 "src": "https://play-lh.googleusercontent.com/21EgFycpGXodAGmqAokRYAdCd2LYhVewPV0CZuCLL4umRLtsvqh4JBnpe7sVofpGXg=w526-h296-rw",
-                "thumbnail": ""
+                "thumbnail": "https://ik.imagekit.io/mjoh996/images/images/xana-lp/images/nftduel-slide2.jpg"
             },
              {
                 "type": "image",
@@ -187,11 +187,6 @@
             {
                 "type": "image",
                 "src": "https://ik.imagekit.io/mjoh996/images/images/xana-lp/images/nftduel-slide6.jpg",
-                "thumbnail": ""
-            },
-            {
-                "type": "image",
-                "src": "https://ik.imagekit.io/mjoh996/images/images/xana-lp/images/nftduel-slide2.jpg",
                 "thumbnail": ""
             }
         ],
@@ -214,7 +209,7 @@
              {
                 "type": "video",
                 "src": "https://youtu.be/J6t8wM5BUdU",
-                "thumbnail": "https://play-lh.googleusercontent.com/PpECnvMQwjbD_wDyKUJpE3mZU2tNQHbG35cb3Ln-lOMjTUuZ0hG1Rt8ffFr6ApooNpwV=w526-h296-rw"
+                "thumbnail": "assets/videos/linecolors.png"
             }
         ],
         "links": {
