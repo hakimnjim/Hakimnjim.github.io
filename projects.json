@@ -106,16 +106,16 @@
         "media": [
              {
                 "type": "video",
-                "src": "blob:https://www.canva.com/b0cf162e-2df1-4c9c-9543-86d1e7f9f040",
-                "thumbnail": "https://play-lh.googleusercontent.com/PpECnvMQwjbD_wDyKUJpE3mZU2tNQHbG35cb3Ln-lOMjTUuZ0hG1Rt8ffFr6ApooNpwV=w526-h296-rw"
+                "src": "assets/videos/Robot War.mp4",
+                "thumbnail": "assets/robetwarthumbel.png"
             },
             {
                 "type": "image",
-                "src": "assets/images/robetwarthumbel.png"
+                "src": "assets/robetwarthumbel.png"
             },
             {
                 "type": "image",
-                "src": "assets/images/robot_warpng.png"
+                "src": "assets/robot_warpng.png"
             }
         ],
         "links": {
