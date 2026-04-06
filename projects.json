@@ -154,5 +154,52 @@
             "download": "#"
         },
         "featured": true
+    },
+    {
+        "id": 6,
+        "title": "NFT Duel",
+        "type": "published",
+        "role": "Gameplay Developer",
+        "description": "Worked as a Gameplay Developer on an NFT-based trading card game using Unity (C#), focusing on designing and implementing scalable gameplay systems. Developed dynamic card ability systems, integrated Photon for multiplayer interactions, and contributed to advanced AI behaviors for strategic gameplay. Helped build flexible mechanics to support diverse decks and competitive dueling experiences.",
+        "skills": ["Unity", "C#", "Photon", "HDRP"],
+        "learned": "Designed and implemented dynamic card ability systems, developed scalable gameplay mechanics, and contributed to multiplayer integration and advanced AI behavior to support strategic and competitive gameplay.",
+        "media": [
+            {
+                "type": "video",
+                "src": "https://youtu.be/jATBza9P8Q4?t=105",
+                "thumbnail": ""
+            },
+                        {
+                "type": "image",
+                "src": "https://play-lh.googleusercontent.com/21EgFycpGXodAGmqAokRYAdCd2LYhVewPV0CZuCLL4umRLtsvqh4JBnpe7sVofpGXg=w526-h296-rw",
+                "thumbnail": ""
+            },
+             {
+                "type": "image",
+                "src": "https://ik.imagekit.io/mjoh996/images/images/xana-lp/images/nftduel-slide1.jpg",
+                "thumbnail": ""
+            },
+            {
+                "type": "image",
+                "src": "https://ik.imagekit.io/mjoh996/images/images/xana-lp/images/nftduel-slide3.jpg",
+                "thumbnail": ""
+            },
+            {
+                "type": "image",
+                "src": "https://ik.imagekit.io/mjoh996/images/images/xana-lp/images/nftduel-slide6.jpg",
+                "thumbnail": ""
+            },
+            {
+                "type": "image",
+                "src": "https://ik.imagekit.io/mjoh996/images/images/xana-lp/images/nftduel-slide2.jpg",
+                "thumbnail": ""
+            }
+        ],
+        "links": {
+            "playstore": "https://play.google.com/store/apps/details?id=com.noborderz.tcgnftduel",
+            "steam": "#",
+            "download": "https://xana.net/nftduel/"
+        },
+        "featured": true
     }
 ]
