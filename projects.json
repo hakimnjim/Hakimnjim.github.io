@@ -201,5 +201,27 @@
             "download": "https://xana.net/nftduel/"
         },
         "featured": true
-    }
+    },
+    {
+        "id": 7,
+        "title": "Line Colors",
+        "type": "prototype",
+        "role": "Solo Developer",
+        "description": "Developed a hyper-casual 2D mobile game using Unity (C#), featuring color-based shooting mechanics and procedurally generated levels to ensure varied and replayable gameplay. Implemented core systems including level-based progression, inventory management, and adaptive soundtrack integration. Integrated PlayFab for backend services and AdMob for monetization, optimizing performance and user experience for mobile platforms.",
+        "skills": ["Unity", "C#", "Game Analytics", "IAP", "AdMob", "Procedural Generation"],
+        "learned": "Designed and implemented core shooting mechanics, developed procedural level generation, and built progression and inventory systems to support engaging and replayable gameplay.",
+        "media": [
+             {
+                "type": "video",
+                "src": "https://youtu.be/J6t8wM5BUdU",
+                "thumbnail": "https://play-lh.googleusercontent.com/PpECnvMQwjbD_wDyKUJpE3mZU2tNQHbG35cb3Ln-lOMjTUuZ0hG1Rt8ffFr6ApooNpwV=w526-h296-rw"
+            }
+        ],
+        "links": {
+            "playstore": "#",
+            "steam": "#",
+            "download": "#"
+        },
+        "featured": false
+    },
 ]
