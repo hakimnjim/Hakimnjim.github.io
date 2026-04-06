@@ -23,7 +23,7 @@
     },
     {
         "id": 2,
-        "clientName": "Long-Term Client Beta",
+        "clientName": "Long-Term Client",
         "description": "A second stream of compact client work built around quick prototypes, feature adjustments, and visual refinements across multiple short delivery cycles.",
         "projects": [
             {
@@ -37,9 +37,9 @@
                 "poster": "assets/videos/small-projects/Ghost.jpg"
             },
             {
-                "title": "Mission Flow Polish",
-                "video": "assets/videos/small-projects/client-beta-mission.mp4",
-                "poster": "assets/videos/small-projects/client-beta-mission-poster.jpg"
+                "title": "Cocodrone",
+                "video": "assets/videos/small-projects/Cocodrone.mp4",
+                "poster": "assets/videos/small-projects/Cocodrone.jpg"
             }
         ]
     }
