@@ -452,13 +452,21 @@ p {
 
 .small-project-media-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(150px, 180px));
+    justify-content: start;
     gap: 0.85rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.small-project-media-grid::-webkit-scrollbar {
+    display: none;
 }
 
 .small-project-video-shell {
     position: relative;
-    min-height: 280px;
+    aspect-ratio: 9 / 16;
+    min-height: 320px;
     border-radius: 20px;
     overflow: hidden;
     background: #020617;
@@ -1056,11 +1064,11 @@ p {
     }
 
     .small-project-media-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(140px, 170px));
     }
 
     .small-project-video-shell {
-        min-height: 220px;
+        min-height: 260px;
     }
 
     .featured-card .main-display,
