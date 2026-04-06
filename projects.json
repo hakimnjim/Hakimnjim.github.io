@@ -33,7 +33,7 @@
     {
         "id": 2,
         "title": "Carwell: Battle Arena",
-        "type": "video",
+        "type": "published",
         "role": "Solo Programmer",
         "description": "Developed a multiplayer car combat game for mobile using Unity (C#), focusing on core gameplay systems, vehicle mechanics, and online interactions. Implemented shooting, drifting, and resource management systems, along with dynamic obstacles and enemy behaviors to create fast-paced, replayable gameplay.",
         "skills":  ["Unity", "C#", "Photon", "PlayFab", "Firebase", "AdMob", "Unity Ads", "Unity Analytics", "Shaders"],
@@ -96,7 +96,7 @@
         "featured": false
     },
     {
-        "id": 4,
+        "id": 6,
         "title": "Robot War",
         "type": "prototype",
         "role": "Solo Developer",
@@ -128,7 +128,7 @@
     {
         "id": 5,
         "title": "OVERLODE: Battle over Azmonite",
-        "type": "prototype",
+        "type": "client",
         "role": "Unity Game Developer",
         "description": "Worked as part of a development team on OVERLODE: Battle over Azmonite, contributing to the design and implementation of core gameplay systems. Collaborated with other developers and designers to build scalable mechanics, ensure smooth system integration, and maintain code quality across shared components.Focused on delivering responsive gameplay features while aligning with the overall game vision and team workflow.",
         "skills": ["Unity (C#)","Finite State Machines","A*"],
@@ -156,9 +156,9 @@
         "featured": true
     },
     {
-        "id": 6,
+        "id": 4,
         "title": "NFT Duel",
-        "type": "published",
+        "type": "client",
         "role": "Gameplay Developer",
         "description": "Worked as a Gameplay Developer on an NFT-based trading card game using Unity (C#), focusing on designing and implementing scalable gameplay systems. Developed dynamic card ability systems, integrated Photon for multiplayer interactions, and contributed to advanced AI behaviors for strategic gameplay. Helped build flexible mechanics to support diverse decks and competitive dueling experiences.",
         "skills": ["Unity", "C#", "Photon", "HDRP"],
