@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        allProjectsContainer.style.opacity = "1";
+        allProjectsContainer.style.transform = "translateY(0)";
         featuredContainer.innerHTML = "";
         allProjectsContainer.innerHTML = "";
 
@@ -417,14 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.classList.add("active");
                 button.setAttribute("aria-pressed", "true");
 
-                allProjectsContainer.style.opacity = "0";
-                allProjectsContainer.style.transform = "translateY(12px)";
-
-                window.setTimeout(() => {
-                    renderProjects(button.dataset.filter || "all");
-                    allProjectsContainer.style.opacity = "1";
-                    allProjectsContainer.style.transform = "translateY(0)";
-                }, 180);
+                renderProjects(button.dataset.filter || "all");
             });
         });
 
