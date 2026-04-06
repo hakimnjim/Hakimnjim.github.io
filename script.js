@@ -75,9 +75,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .slice(0, 2);
 
         if (filter === "all") {
+            const featuredFragment = document.createDocumentFragment();
             featuredProjects.forEach((project) => {
-                featuredContainer.appendChild(createProjectCard(project, true));
+                try {
+                    featuredFragment.appendChild(createProjectCard(project, true));
+                } catch (error) {
+                    console.error("Failed to render featured project:", project, error);
+                }
             });
+            featuredContainer.appendChild(featuredFragment);
         }
 
         const filteredProjects = filter === "all"
@@ -98,9 +104,22 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const projectsFragment = document.createDocumentFragment();
+
         filteredProjects.forEach((project) => {
-            allProjectsContainer.appendChild(createProjectCard(project, false));
+            try {
+                projectsFragment.appendChild(createProjectCard(project, false));
+            } catch (error) {
+                console.error("Failed to render project:", project, error);
+            }
         });
+
+        if (!projectsFragment.childNodes.length) {
+            renderProjectError();
+            return;
+        }
+
+        allProjectsContainer.appendChild(projectsFragment);
 
         observeRevealTargets();
     }
@@ -138,13 +157,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createProjectCard(project, isFeatured = false) {
+        const safeProject = normalizeProject(project);
         const card = document.createElement("article");
         card.className = `project-card reveal ${isFeatured ? "featured-card" : ""}`.trim();
-        card.dataset.id = String(project.id);
-        card.dataset.type = project.type;
+        card.dataset.id = String(safeProject.id);
+        card.dataset.type = safeProject.type;
 
-        const mediaItems = Array.isArray(project.media) && project.media.length > 0
-            ? project.media
+        const mediaItems = Array.isArray(safeProject.media) && safeProject.media.length > 0
+            ? safeProject.media
             : [{ type: "image", src: "", thumbnail: "" }];
 
         const firstMedia = mediaItems[0];
@@ -152,35 +172,35 @@ document.addEventListener("DOMContentLoaded", () => {
         card.innerHTML = `
             <div class="project-viewer">
                 <div class="main-display">
-                    ${renderMainMedia(project, firstMedia, isFeatured)}
+                    ${renderMainMedia(safeProject, firstMedia, isFeatured)}
                     ${isFeatured ? '<div class="featured-badge">Featured</div>' : ""}
                 </div>
-                <div class="media-strip" aria-label="${project.title} media gallery">
-                    ${renderThumbnails(project, mediaItems)}
+                <div class="media-strip" aria-label="${safeProject.title} media gallery">
+                    ${renderThumbnails(safeProject, mediaItems)}
                 </div>
             </div>
             <div class="project-content">
-                <div class="type-badge type-${project.type}">${project.type}</div>
-                <h3 class="project-title">${escapeHtml(project.title)}</h3>
-                <span class="project-role">${escapeHtml(project.role || "Game Developer")}</span>
-                <p class="project-desc">${escapeHtml(project.description || "")}</p>
+                <div class="type-badge type-${safeProject.type}">${safeProject.type}</div>
+                <h3 class="project-title">${escapeHtml(safeProject.title)}</h3>
+                <span class="project-role">${escapeHtml(safeProject.role)}</span>
+                <p class="project-desc">${escapeHtml(safeProject.description)}</p>
                 <div class="project-info">
-                    <p class="learned"><strong>Developer Insights</strong>${escapeHtml(project.learned || "Built with care and iterative improvement.")}</p>
+                    <p class="learned"><strong>Developer Insights</strong>${escapeHtml(safeProject.learned)}</p>
                 </div>
                 <div class="project-tags">
-                    ${renderTags(project.skills)}
+                    ${renderTags(safeProject.skills)}
                 </div>
                 <div class="project-links">
                     <div class="project-link-group">
-                        ${renderProjectLinks(project.links)}
+                        ${renderProjectLinks(safeProject.links)}
                     </div>
                     <button class="btn-track-view" type="button">View Details</button>
                 </div>
             </div>
         `;
 
-        setupMediaSwitching(card, project, mediaItems, isFeatured);
-        setupCardClickTracking(card, project);
+        setupMediaSwitching(card, safeProject, mediaItems, isFeatured);
+        setupCardClickTracking(card, safeProject);
 
         return card;
     }
@@ -520,6 +540,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </article>
         `;
+    }
+
+    function normalizeProject(project = {}) {
+        const normalizedType = String(project.type || "project").trim().toLowerCase().replace(/\s+/g, "-");
+
+        return {
+            id: project.id ?? Date.now(),
+            title: project.title || "Untitled Project",
+            type: normalizedType || "project",
+            role: project.role || "Game Developer",
+            description: project.description || "Project details coming soon.",
+            learned: project.learned || "Built with care and iterative improvement.",
+            skills: Array.isArray(project.skills) ? project.skills : [],
+            media: Array.isArray(project.media) ? project.media : [],
+            links: project.links && typeof project.links === "object" ? project.links : {}
+        };
     }
 
     function getYouTubeEmbedUrl(url) {

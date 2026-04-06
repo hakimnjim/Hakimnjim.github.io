@@ -203,8 +203,6 @@ p {
 
 .section-padding {
     padding: 7rem 0;
-    content-visibility: auto;
-    contain-intrinsic-size: 700px;
 }
 
 .hero-section {
