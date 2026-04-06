@@ -498,7 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        document.querySelectorAll("section, .project-card, .small-project-card, .skill-category, .contact-card, .stat-item, .about-highlight").forEach((element) => {
+        document.querySelectorAll(".project-card, .small-project-card, .skill-category, .contact-card, .stat-item, .about-highlight, .section-header").forEach((element) => {
             element.classList.add("reveal");
             revealObserver.observe(element);
         });
