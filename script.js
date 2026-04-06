@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const featuredContainer = document.getElementById("featured-container");
+    const smallProjectsContainer = document.getElementById("small-projects-container");
     const allProjectsContainer = document.getElementById("all-projects-container");
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.querySelector(".nav-links");
@@ -8,14 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const clickStorageKey = "game_dev_portfolio_clicks";
 
     let projects = [];
+    let smallProjects = [];
     let revealObserver;
 
     init();
 
     async function init() {
         try {
-            projects = await fetchProjects();
+            [projects, smallProjects] = await Promise.all([
+                fetchProjects(),
+                fetchSmallProjects()
+            ]);
             renderProjects();
+            renderSmallProjects();
             setupEventListeners();
             setupScrollAnimations();
             logClickStats();
@@ -33,6 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         return response.json();
+    }
+
+    async function fetchSmallProjects() {
+        const response = await fetch("small_project.json");
+
+        if (!response.ok) {
+            throw new Error(`Unable to load small_project.json (${response.status})`);
+        }
+
+        const rawText = await response.text();
+        if (!rawText.trim()) {
+            return [];
+        }
+
+        const parsed = JSON.parse(rawText);
+        return Array.isArray(parsed) ? parsed : [];
     }
 
     function renderProjects(filter = "all") {
@@ -62,6 +84,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         filteredProjects.forEach((project) => {
             allProjectsContainer.appendChild(createProjectCard(project, false));
+        });
+
+        observeRevealTargets();
+    }
+
+    function renderSmallProjects() {
+        if (!smallProjectsContainer) {
+            return;
+        }
+
+        smallProjectsContainer.innerHTML = "";
+
+        const itemsToRender = smallProjects
+            .filter((item) => item && item.clientName && Array.isArray(item.projects) && item.projects.length > 0)
+            .slice(0, 2);
+
+        if (itemsToRender.length === 0) {
+            smallProjectsContainer.innerHTML = `
+                <article class="small-project-card reveal">
+                    <div class="small-project-copy">
+                        <p class="small-project-label">Ready for content</p>
+                        <h3 class="small-project-title">Add client sprint projects to <code>small_project.json</code></h3>
+                        <p class="small-project-description">Each item supports one client name, one shared description, and three local videos for a compact showcase layout.</p>
+                    </div>
+                </article>
+            `;
+            observeRevealTargets();
+            return;
+        }
+
+        itemsToRender.forEach((item) => {
+            smallProjectsContainer.appendChild(createSmallProjectCard(item));
         });
 
         observeRevealTargets();
@@ -113,6 +167,60 @@ document.addEventListener("DOMContentLoaded", () => {
         setupCardClickTracking(card, project);
 
         return card;
+    }
+
+    function createSmallProjectCard(item) {
+        const card = document.createElement("article");
+        card.className = "small-project-card reveal";
+
+        const projectsForCard = item.projects.slice(0, 3);
+
+        card.innerHTML = `
+            <div class="small-project-media-grid">
+                ${projectsForCard.map((project, index) => renderSmallProjectVideo(project, item.clientName, index)).join("")}
+            </div>
+            <div class="small-project-copy">
+                <p class="small-project-label">Long-term client collaboration</p>
+                <h3 class="small-project-title">${escapeHtml(item.clientName)}</h3>
+                <p class="small-project-description">${escapeHtml(item.description || "")}</p>
+                <ul class="small-project-list">
+                    ${projectsForCard.map((project) => `<li>${escapeHtml(project.title || "Project")}</li>`).join("")}
+                </ul>
+            </div>
+        `;
+
+        return card;
+    }
+
+    function renderSmallProjectVideo(project, clientName, index) {
+        const videoSrc = project.video || project.src || "";
+        const poster = project.poster || "";
+        const title = project.title || `Project ${index + 1}`;
+
+        if (!videoSrc) {
+            return `
+                <div class="small-project-video-shell small-project-video-placeholder">
+                    <span>${escapeHtml(title)}</span>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="small-project-video-shell">
+                <video
+                    src="${videoSrc}"
+                    ${poster ? `poster="${poster}"` : ""}
+                    class="small-project-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    aria-label="${escapeAttribute(clientName)} ${escapeAttribute(title)} video">
+                </video>
+                <span class="small-project-video-title">${escapeHtml(title)}</span>
+            </div>
+        `;
     }
 
     function renderMainMedia(project, mediaItem) {
@@ -332,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        document.querySelectorAll("section, .project-card, .skill-category, .contact-card, .stat-item, .about-highlight").forEach((element) => {
+        document.querySelectorAll("section, .project-card, .small-project-card, .skill-category, .contact-card, .stat-item, .about-highlight").forEach((element) => {
             element.classList.add("reveal");
             revealObserver.observe(element);
         });

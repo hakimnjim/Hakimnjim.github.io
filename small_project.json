@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "clientName": "Long-Term Client",
+        "description": "A batch of fast-turn gameplay and polish tasks delivered for an ongoing client partnership. These short projects focused on rapid implementation, visual iteration, and stable handoff quality.",
+        "projects": [
+            {
+                "title": "Unknown Diary",
+                "video": "assets/videos/small-projects/Unknown Diary.mp4",
+                "poster": "assets/videos/small-projects/Unknown Diary.jpg"
+            },
+            {
+                "title": "Usisan",
+                "video": "assets/videos/small-projects/Usisan.mp4",
+                "poster": "assets/videos/small-projects/Usisan.jpg"
+            },
+            {
+                "title": "Gorae",
+                "video": "assets/videos/small-projects/Gorae.mp4",
+                "poster": "assets/videos/small-projects/Gorae.jpg"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "clientName": "Long-Term Client Beta",
+        "description": "A second stream of compact client work built around quick prototypes, feature adjustments, and visual refinements across multiple short delivery cycles.",
+        "projects": [
+            {
+                "title": "2D Platform Game",
+                "video": "assets/videos/small-projects/Prototype.mp4",
+                "poster": "assets/videos/small-projects/Prototype.jpg"
+            },
+            {
+                "title": "Arena Effects Pass",
+                "video": "assets/videos/small-projects/client-beta-effects.mp4",
+                "poster": "assets/videos/small-projects/client-beta-effects-poster.jpg"
+            },
+            {
+                "title": "Mission Flow Polish",
+                "video": "assets/videos/small-projects/client-beta-mission.mp4",
+                "poster": "assets/videos/small-projects/client-beta-mission-poster.jpg"
+            }
+        ]
+    }
+]
