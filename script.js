@@ -274,6 +274,18 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("");
     }
 
+    function getProjectPrimaryLink(links = {}) {
+        const priority = ["playstore", "steam", "download"];
+
+        for (const key of priority) {
+            if (links[key] && links[key] !== "#") {
+                return links[key];
+            }
+        }
+
+        return "";
+    }
+
     function renderTags(skills = []) {
         return (skills || [])
             .map((skill) => `<span class="tag">${escapeHtml(skill)}</span>`)
@@ -329,6 +341,11 @@ document.addEventListener("DOMContentLoaded", () => {
             detailButton.addEventListener("click", (event) => {
                 event.stopPropagation();
                 trackProjectClick(project.id, project.title);
+
+                const destination = getProjectPrimaryLink(project.links);
+                if (destination) {
+                    window.open(destination, "_blank", "noopener,noreferrer");
+                }
             });
         }
 
